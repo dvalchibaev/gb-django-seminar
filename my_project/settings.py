@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "my_app",
     "homepage_app",
+    "random_events_app",
 ]
 
 MIDDLEWARE = [
@@ -157,6 +158,11 @@ LOGGING = {
             'propagate': True,
         },
         'homepage_app': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'random_events_app': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
