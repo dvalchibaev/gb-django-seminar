@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "my_app",
     "homepage_app",
     "random_events_app",
+    "publications_app",
 ]
 
 MIDDLEWARE = [
