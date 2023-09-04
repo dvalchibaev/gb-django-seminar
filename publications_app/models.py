@@ -28,11 +28,9 @@ class Article(Model):
 
 class Commentary(Model):
     author = models.ForeignKey(Author,
-                               on_delete=models.CASCADE,
-                               unique=True)
+                               on_delete=models.CASCADE)
     article = models.ForeignKey(Article,
-                                on_delete=models.CASCADE,
-                                unique=True)
+                                on_delete=models.CASCADE)
     commentary = models.TextField()
     created = models.DateField()
     edited = models.DateField(default=created)
