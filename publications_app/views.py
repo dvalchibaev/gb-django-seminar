@@ -1,38 +1,26 @@
 from django.http import HttpResponse
-from .models import Author, Article
-from random import randint
+from .models import Author, Article, Commentary
+from random import randint, choice
 
 
 def authors(request):
-    return HttpResponse("Authors dummy")
+    authors = Author.objects.all()
+    result = '<br>'.join([str(author) for author in authors])
+    return HttpResponse(result)
 
 
 def articles(request):
-    return HttpResponse("Articles dummy")
+    arts = Article.objects.all()
+    result = ''
+    for art in arts:
+        result += f"{art.title} by {art.author}, {art.publication_date}<br>"
+    return HttpResponse(result)
 
 
-def generate_authors(request):
-    for i in range(10):
-        author = Author(
-            first_name=f"Author{i}",
-            last_name=f"McAuthor{i}",
-            email=f"author{i}@email.com",
-            bio=f"bio{i}",
-            birthday=f"{1990+randint(0,23)}-{randint(1,12):02d}-{1+i:02d}"
-            )
-        author.save()
-    return HttpResponse("OK")
-
-
-def generate_article(request):
-    for i in range(30):
-        article = Article(
-            title=f"Title{i}",
-            text=f"Some text{i}",
-            publication_date=f"2023-{randint(1,8):02d}-{1+i:02d}",
-            cathegory=f"Category{randint(0,4)}",
-            author=Author.objects.filter(pk=randint(1,10)).first()
-            )
-        article.save()
-    return HttpResponse("OK")
+def comments(request):
+    commentaries = Commentary.objects.all()
+    result = ''
+    for com in commentaries:
+        result += f"{com.author} on {com.article.title}, {com.created}: {com.commentary} <br>"
+    return HttpResponse(result)
 
