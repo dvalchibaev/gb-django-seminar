@@ -8,8 +8,8 @@
     <header>
         {% block header %}
         <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="about/">Обо мне</a></li>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'about' %}">Обо мне</a></li>
         </ul>
         {% endblock %}
     </header>
