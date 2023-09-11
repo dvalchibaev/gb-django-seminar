@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "my_app",
     "homepage_app",
     "random_events_app",
+    "publications_app",
+    "shop_app",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,9 @@ ROOT_URLCONF = "my_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            'templates',
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} {{ game_title }} {% endblock %}
+
+{% block header %} <h1> {{ game_title }} </h1> {% endblock %}
+
+{% block content %}
+    {% for roll in rolls %}
+        <p> {{ roll }} </p>
+    {% endfor %}
+{% endblock %}
+
+{% block footer %} {% endblock %}
