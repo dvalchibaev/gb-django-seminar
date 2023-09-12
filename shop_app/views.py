@@ -1,7 +1,9 @@
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from . import models
+from . import models, forms
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -68,3 +70,23 @@ class ClientOrders(TemplateView):
         context['client_orders'] = client_orders
         context['order_items'] = order_items
         return context
+
+
+def item_edit(request, item_id: int):
+    template_name = "shop_app/item_edit.html"
+    item = models.Item.objects.filter(pk=item_id).first()
+    if request.method == "POST":
+        form = forms.ItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            item.name = form.cleaned_data['name']
+            item.description = form.cleaned_data['description']
+            item.price = form.cleaned_data['price']
+            item.date_added = form.cleaned_data['date_added']
+            image = form.cleaned_data['image']
+            fs = FileSystemStorage()
+            fs.save(image.name, image)
+            item.image = image
+            item.save()
+    else:
+        form = forms.ItemForm()
+    return render(request, template_name, {'form': form, 'item': item, 'order': item.order})
