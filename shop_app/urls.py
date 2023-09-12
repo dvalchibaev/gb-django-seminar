@@ -9,4 +9,5 @@ urlpatterns = [
     path("client_orders/<int:client_id>/", views.ClientOrders.as_view(), name="client_orders"),
     path("client_orders/<int:client_id>/<str:date_range>/", views.ClientOrders.as_view(), name="client_orders"),
     path("create_orders/<str:date>/", views.create_fake_orders, name="create_fake_orders"),
+    path("edit_item/<int:item_id>", views.item_edit, name="item_edit"),
 ]

@@ -31,6 +31,7 @@ class Item(models.Model):
     amount = models.PositiveIntegerField()
     date_added = models.DateField()
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    image = models.ImageField(default="stock_item.jpg")
 
     def __str__(self):
         return f"Item: {self.name}, price {self.price}, #: {self.amount}"
