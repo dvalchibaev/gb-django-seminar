@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Заказы {{ client_name }} {% endblock %}
+
+{% block header %} <h1>Заказы {{ client_name }}</h1> {% endblock %}
+
+{% block content %}
+    {% for order, order_items in order_items.items %}
+        <p>Order date: {{order.date}}</p>
+        <ul>
+            {% for item in order_items %}
+            <li>{{ item.name }} - {{ item.amount }} x {{ item.price }};</li>
+            {% endfor %}
+        </ul>
+        <p>Total: {{order.total_sum}}</p>
+    {% endfor %}
+{% endblock %}
+{% block footer %} footer {% endblock %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Шаблонный заголовок {% endblock %} </title>
+</head>
+<body>
+    <header>
+        {% block header %}
+        <ul>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'about' %}">Обо мне</a></li>
+        </ul>
+        {% endblock %}
+    </header>
+    {% block content %}
+    <div>
+        Какой-то текст
+    </div>
+    {% endblock %}
+    <footer>
+        {% block footer %}
+        <ul>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'about' %}">Обо мне</a></li>
+        </ul>
+        {% endblock %}
+    </footer>
+</body>
+</html>
