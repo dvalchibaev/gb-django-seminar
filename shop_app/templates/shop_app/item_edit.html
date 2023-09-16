@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Editing item {{ item.name }} {% endblock %}
+
+{% block header %} <h1> {{ item.name }} in order of {{ order.client.name }}, {{ order.date }} </h1> {% endblock %}
+{% block content %}
+    <h2> Item data: </h2>
+    <ul>
+        <li>Name: {{ item.name }}</li>
+        <li>Description: {{ item.description }}</li>
+        <li>Price: {{ item.price }}</li>
+        <li># in order: {{ item.amount }}</li>
+        <li>Date: {{ item.date_added }}
+        <li>Order #: {{ item.order.pk }}</li>
+    </ul>
+    <h2>Update to:</h2>
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+{% endblock %}
+{% block footer %} <p> Footer </p> {% endblock %}
